@@ -6,7 +6,7 @@ services:
     volumes:
       # in .env file, set FILES="<full path to directory>"
       - ${FILES:-.}:/srv/files:ro
-    restart: always
+    restart: unless-stopped
     ports:
       - 4040:4040
     command: >
