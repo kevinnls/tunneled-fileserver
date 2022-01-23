@@ -1,0 +1,14 @@
+services:
+  ngrok:
+    image: ngrok/ngrok:alpine
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN:?"set value of NGROK_AUTHTOKEN in .env file"}
+    volumes:
+      # in .env file, set FILES="<full path to directory>"
+      - ${FILES:-.}:/srv/files:ro
+    ports:
+      - 4040:4040
+    command: >
+      http
+      file://${files:-/srv/files}
+      --bind-tls=true
