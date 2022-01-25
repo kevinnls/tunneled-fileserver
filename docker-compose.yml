@@ -5,7 +5,7 @@ services:
       - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN:?"set value of NGROK_AUTHTOKEN in .env file"}
     volumes:
       # in .env file, set FILES="<full path to directory>"
-      - ${FILES:-.}:/srv/files:ro
+      - ${SHARED_DIR:-shared_dir}:/srv/files:ro
     restart: unless-stopped
     ports:
       - 4040:4040
